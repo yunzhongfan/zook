@@ -19,8 +19,8 @@ public class WatcherExample implements Watcher{
 	private static final String CONNECTION_STRING = "test.zookeeper.connection_string:2181," +
 			                                                                           "test.zookeeper.connection_string2:2181," +
 			                                                                           "test.zookeeper.connection_string3:2181";
-	private static final String ZK_PATH 				= "/nileader";
-	private static final String CHILDREN_PATH 	= "/nileader/ch";
+	private static final String ZK_PATH 				= "/zookeeper";
+	private static final String CHILDREN_PATH 	= "/zookeeper/ch";
 	private static final String LOG_PREFIX_OF_MAIN = "【Main】";
 	
 	private ZooKeeper zk = null;
@@ -30,7 +30,7 @@ public class WatcherExample implements Watcher{
 	
 	
 	
-/*	public static void main( String[] args ) {
+	/*public static void main( String[] args ) {
 
 		PropertyConfigurator.configure("src/main/resources/log4j.properties");
 		

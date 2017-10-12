@@ -17,9 +17,9 @@ public class WatcherRegister {
 	private static final Logger LOG = Logger.getLogger(WatcherRegister.class);
 	
 	private static final String LOG_PREFIX_OF_MAIN = "【Main】";
-	private static final String CHILDREN_PATH 	= "/nileader/ch";
+	private static final String CHILDREN_PATH 	= "/zookeeper/ch";
 		private  ZooKeeper  zk= null;
-		private static final String ZK_PATH	= "/nileader";
+		private static final String ZK_PATH	= "/zookeeper";
 		private CountDownLatch connectedSemaphore = new CountDownLatch( 1 );
 		
 		public  WatcherRegister(){
@@ -173,6 +173,35 @@ public class WatcherRegister {
 			
 			
 			re.createConnection("127.0.0.1:2182", 30000);
+			/*Stat  Stat = re.exists("/zookeeper", true);
+			if(Stat!=null){
+				Stat.getCtime();
+				System.out.println(re.readData("/zookeeper", true));
+			}*/
+			
+			//re.createConnection( CONNECTION_STRING, SESSION_TIMEOUT );
+			//清理节点
+			re.deleteAllTestPath();
+			if ( re.createPath( ZK_PATH, System.currentTimeMillis()+"" ) ) {
+				Thread.sleep( 3000 );
+				//读取数据
+				re.readData( ZK_PATH, true );
+				//读取子节点
+				re.getChildren( ZK_PATH, true );
+				
+				//更新数据
+				re.writeData( ZK_PATH, System.currentTimeMillis()+"" );
+				Thread.sleep( 3000 );
+				//创建子节点
+				re.createPath( CHILDREN_PATH, System.currentTimeMillis()+"" );
+			}
+			Thread.sleep( 3000 );
+			//清理节点
+			re.deleteAllTestPath();
+			Thread.sleep( 3000 );
+			re.releaseConnection();
+			
+			
 		}
 		
 		
