@@ -20,7 +20,7 @@ public class WatcherRegister {
 	private static final String CHILDREN_PATH 	= "/zookeeper/ch";
 		private  ZooKeeper  zk= null;
 		private static final String ZK_PATH	= "/zookeeper";
-		private CountDownLatch connectedSemaphore = new CountDownLatch( 1 );
+		private CountDownLatch connectedSemaphore = new CountDownLatch(1);
 		
 		public  WatcherRegister(){
 			

@@ -89,16 +89,16 @@ public class WatcherExample implements Watcher{
 			// 成功连接上ZK服务器
 			if ( EventType.None == eventType ) {
 				LOG.info( logPrefix + "成功连接上ZK服务器" );
-				connectedSemaphore.countDown();
+	//			connectedSemaphore.countDown();
 			} else if ( EventType.NodeCreated == eventType ) {
 				LOG.info( logPrefix + "节点创建" );
-				//this.exists( path, true );
+	//			this.exists( path, true );
 			} else if ( EventType.NodeDataChanged == eventType ) {
 				LOG.info( logPrefix + "节点数据更新" );
-				//LOG.info( logPrefix + "数据内容: " + this.readData( ZK_PATH, true ) );
+		//		LOG.info( logPrefix + "数据内容: " + this.readData( ZK_PATH, true ) );
 			} else if ( EventType.NodeChildrenChanged == eventType ) {
 				LOG.info( logPrefix + "子节点变更" );
-			//	LOG.info( logPrefix + "子节点列表：" + this.getChildren( ZK_PATH, true ) );
+		//		LOG.info( logPrefix + "子节点列表：" + this.getChildren( ZK_PATH, true ) );
 			} else if ( EventType.NodeDeleted == eventType ) {
 				LOG.info( logPrefix + "节点 " + path + " 被删除" );
 			}
