@@ -28,9 +28,8 @@ public class ConfigWatcher implements Watcher{
 					log.info("节点创建");
 					// this.exists( path, true );
 				} else if (EventType.NodeDataChanged == event.getType()) {
-					log.info("节点数据更新");
-					// LOG.info( logPrefix + "数据内容: " + this.readData( ZK_PATH,
-					// true ) );
+					log.info("节点数据更新，更新内容为："+store.read(event.getPath(),null));
+					
 				} else if (EventType.NodeChildrenChanged == event.getType()) {
 					log.info("子节点变更");
 					// LOG.info( logPrefix + "子节点列表：" + this.getChildren(
@@ -60,6 +59,7 @@ public class ConfigWatcher implements Watcher{
     public void dispalyConfig() throws KeeperException, InterruptedException{
         String value=store.read(ConfigUpdater.PATH, this);
         System.out.printf("Read %s as %s\n",ConfigUpdater.PATH,value);
+        store.write(ConfigUpdater.PATH, "我是配置服务测试");
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
